@@ -1,0 +1,22 @@
+service: <service name> # speficy service name; 'default' if not specified
+runtime: custom
+env: flex
+
+manual_scaling:
+  instances: 1
+
+resources:
+  cpu: 1
+  memory_gb: 1
+  disk_size_gb: 10
+
+env_variables:
+  MB_JETTY_PORT: 8080
+  MB_DB_TYPE: postgres
+  MB_DB_DBNAME: <db name> # speficy DB name
+  MB_DB_PORT: 5432
+  MB_DB_USER: <db user> # specify DB user
+  MB_DB_PASS: <db pass> # specify DB password
+  MB_DB_HOST: 127.0.0.1
+  MB_SQL_INSTANCE: <db instance name> # specify DB instance name; ref. https://cloud.google.com/sql/docs/postgres/instance-info
+  JAVA_TIMEZONE: <tz name> # speficy timezone for reports; ref. https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
