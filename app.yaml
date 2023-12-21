@@ -2,13 +2,29 @@ service: <service name> # speficy service name; 'default' if not specified
 runtime: custom
 env: flex
 
-manual_scaling:
-  instances: 1
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 2
 
 resources:
   cpu: 1
   memory_gb: 1
   disk_size_gb: 10
+
+liveness_check:
+  path: /api/health
+  timeout_sec: 3
+  check_interval_sec: 30
+  failure_threshold: 3
+  initial_delay_sec: 300
+
+readiness_check:
+  path: /api/health
+  timeout_sec: 3
+  check_interval_sec: 5
+  failure_threshold: 3
+  success_threshold: 1
+  app_start_timeout_sec: 300
 
 env_variables:
   MB_JETTY_PORT: 8080
